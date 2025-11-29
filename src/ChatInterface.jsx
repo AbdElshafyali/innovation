@@ -59,8 +59,8 @@ const ChatInterface = ({ messages, setMessages, addInvoice, invoices, currentUse
 
     try {
       // 3. Send the file to your backend
-      // IMPORTANT: Replace this URL with your actual backend URL
-      const response = await fetch('http://localhost:5000/api/invoices/upload', {
+      // IMPORTANT: This is the new production URL
+      const response = await fetch('https://corrected-item-wilderness-acquisition.trycloudflare.com/api/Invoices/upload', {
         method: 'POST',
         body: formData,
         // Headers are not needed for multipart/form-data, fetch adds them automatically
