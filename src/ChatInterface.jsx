@@ -59,7 +59,9 @@ const ChatInterface = ({ messages, setMessages, addInvoice, invoices, currentUse
 
     try {
       // 3. Send the file to your backend
-      const response = await fetch('http://nsaproject.runasp.net/api/Invoices/upload', {
+      // Let's switch to the local development server URL.
+      // Make sure your ASP.NET backend is running locally.
+      const response = await fetch('https://localhost:7135/api/Invoices/upload', {
         method: 'POST',
         body: formData,
         // Headers are not needed for multipart/form-data, fetch adds them automatically
