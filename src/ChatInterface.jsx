@@ -59,8 +59,7 @@ const ChatInterface = ({ messages, setMessages, addInvoice, invoices, currentUse
 
     try {
       // 3. Send the file to your backend
-      // IMPORTANT: This is the new production URL
-      const response = await fetch('https://corrected-item-wilderness-acquisition.trycloudflare.com/api/Invoices/upload', {
+      const response = await fetch('http://nsaproject.runasp.net/api/Invoices/upload', {
         method: 'POST',
         body: formData,
         // Headers are not needed for multipart/form-data, fetch adds them automatically
