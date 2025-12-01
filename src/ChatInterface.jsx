@@ -59,9 +59,8 @@ const ChatInterface = ({ messages, setMessages, addInvoice, invoices, currentUse
 
     try {
       // 3. Send the file to your backend
-      // Let's switch to the local development server URL.
-      // Make sure your ASP.NET backend is running locally.
-      const response = await fetch('https://localhost:7135/api/Invoices/upload', {
+      const apiUrl = `${import.meta.env.VITE_API_URL}/Invoices/upload`;
+      const response = await fetch(apiUrl, {
         method: 'POST',
         body: formData,
         // Headers are not needed for multipart/form-data, fetch adds them automatically
