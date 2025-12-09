@@ -43,6 +43,8 @@ const AuthScreen = ({ onLoginSuccess, users, setUsers }) => {
             return;
         }
 
+        const isAdmin = users.length === 0;
+        const role = isAdmin ? 'manager' : 'employee';
         const newUser = {
             id: `user_${Date.now()}`,
             name, nickname, email, accountType,
@@ -50,6 +52,8 @@ const AuthScreen = ({ onLoginSuccess, users, setUsers }) => {
             profilePic, country: country.name,
             isEmailVerified: false, isPhoneVerified: false,
             password, // In a real app, you'd hash this on the server
+            isAdmin,
+            role,
         };
 
         // Add user to our fake DB and log them in

@@ -15,6 +15,22 @@ const ChatInterface = ({ messages, setMessages, addInvoice, invoices, currentUse
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
+  useEffect(() => {
+    // When the component unmounts, clean up any lingering blob URLs.
+    // This prevents them from being stored in localStorage and causing errors on the next load.
+    return () => {
+      setMessages(prevMessages => 
+        prevMessages.filter(msg => {
+          if (msg.type === 'image' && msg.image && msg.image.startsWith('blob:')) {
+            URL.revokeObjectURL(msg.image); // Clean up the blob from memory
+            return false; // Remove this message from the array
+          }
+          return true; // Keep all other messages
+        })
+      );
+    };
+  }, [setMessages]); // `setMessages` is stable and won't cause re-renders.
+
   // This function can be adapted to call your backend for text-based chat
   const handleSend = async () => {
     if (!inputText.trim()) return;
